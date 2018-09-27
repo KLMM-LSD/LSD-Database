@@ -18,13 +18,16 @@ CREATE TABLE users (
 CREATE TABLE posts (
 	postid		INT NOT NULL AUTO_INCREMENT,
 	posttype	ENUM ("reply", "thread") NOT NULL,
-	postparentid	INT DEFAULT -1,
+	postparentid	INT,
 	posttimestamp	BIGINT NOT NULL,
 	postauthorid	INT NOT NULL,
-	postthreadid	INT DEFAULT -1,
+	postthreadid	INT,
 
 	postcontent	VARCHAR (1000) NOT NULL,
 
+	FOREIGN KEY (postparentid) REFERENCES posts(postid),
+	FOREIGN KEY (postthreadid) REFERENCES posts(postthreadid),
+	FOREIGN KEY (postauthorid) REFERENCES users(userid),
 	PRIMARY KEY (postid)
 );
 
@@ -34,6 +37,8 @@ CREATE TABLE ratings (
 	ratingvalue	INT NOT NULL,
 	ratingpostid	INT NOT NULL,
 
+	FOREIGN KEY (ratingauthorid) REFERENCES users(userid),
+	FOREIGN KEY (ratingpostid) REFERENCES posts(postid),
 	PRIMARY KEY (ratingid)
 );
 
