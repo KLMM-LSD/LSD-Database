@@ -4,7 +4,7 @@ CREATE DATABASE lsd;
 USE lsd;
 
 CREATE TABLE users (
-	userid		INT NOT NULL AUTO_INCREMENT,
+	userid		INT NOT NULL UNIQUE,
 	usertype	ENUM ("admin", "user", "banned") NOT NULL DEFAULT "user",
 	usertimestamp	BIGINT NOT NULL,
 
@@ -16,14 +16,15 @@ CREATE TABLE users (
 );
 
 CREATE TABLE posts (
-	postid		INT NOT NULL AUTO_INCREMENT,
-	posttype	ENUM ("reply", "thread") NOT NULL,
+	postid		INT NOT NULL UNIQUE,
+	posttype	ENUM ("comment", "story") NOT NULL,
 	postparentid	INT,
 	posttimestamp	BIGINT NOT NULL,
 	postauthorid	INT NOT NULL,
-	postthreadid	INT,
 
-	postcontent	VARCHAR (1000) NOT NULL,
+	/* postthreadid	INT NOT NULL, */
+
+	postcontent	VARCHAR (3000) NOT NULL,
 
 	FOREIGN KEY (postparentid) REFERENCES posts(postid),
 	FOREIGN KEY (postthreadid) REFERENCES posts(postid),
