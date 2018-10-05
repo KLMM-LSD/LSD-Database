@@ -27,7 +27,7 @@ CREATE TABLE posts (
 	postcontent	VARCHAR (3000) NOT NULL,
 
 	FOREIGN KEY (postparentid) REFERENCES posts(postid),
-	FOREIGN KEY (postthreadid) REFERENCES posts(postid),
+	/* FOREIGN KEY (postthreadid) REFERENCES posts(postid), */
 	FOREIGN KEY (postauthorid) REFERENCES users(userid),
 	PRIMARY KEY (postid)
 );
