@@ -6,7 +6,6 @@ USE lsd;
 CREATE TABLE users (
 	userid		INT NOT NULL UNIQUE,
 	usertype	ENUM ('admin', 'user', 'banned') NOT NULL DEFAULT 'user',
-	usertimestamp	BIGINT NOT NULL,
 
 	username	VARCHAR (30) NOT NULL UNIQUE,
 	userpassword	VARCHAR (30) NOT NULL,
@@ -19,7 +18,6 @@ CREATE TABLE posts (
 	postid		INT NOT NULL UNIQUE,
 	posttype	ENUM ('comment', 'story') NOT NULL,
 	postparentid	INT,
-	posttimestamp	BIGINT NOT NULL,
 	postauthorid	INT NOT NULL,
 
 	postthreadid	INT,
