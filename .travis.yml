@@ -1,0 +1,12 @@
+language: generic
+
+services:
+    - mysql
+
+before_install:
+    - echo "Configuring build."
+    #Change mysql password to match local development config (from travis docs)
+    - sudo mysql -e "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('root');"
+    - sudo service mysql restart
+    #Run DB script to see if it succeeds.
+    - sudo mysql -u root -proot < db.sql
