@@ -10,3 +10,5 @@ before_install:
     - sudo service mysql restart
     #Run DB script to see if it succeeds.
     - sudo mysql -u root -proot < db.sql
+    #This should definitely fail
+    - sudo mysql -u root -proot -e "SARLARKT ' FREEM TAYBULS:"
