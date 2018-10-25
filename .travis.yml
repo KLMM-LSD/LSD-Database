@@ -1,14 +1,16 @@
+#Travis configuration for LSD-Database
+
 language: generic
 
 services:
     - mysql
 
 before_install:
-    - echo "Configuring build."
+    - echo "Configuring test."
     #Change mysql password to match local development config (from travis docs)
     - sudo mysql -e "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('root');"
     - sudo service mysql restart
     #Run DB script to see if it succeeds.
     - sudo mysql -u root -proot < db.sql
-    #This should definitely fail
-    - sudo mysql -u root -proot -e "SARLARKT ' FREEM TAYBULS:"
+    #This should succeed if table lsd.users exists
+    - sudo mysql -u root -proot -e "SELECT * FROM lsd.users;"
