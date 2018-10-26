@@ -7,7 +7,7 @@ CREATE TABLE users (
 	userid		INT NOT NULL UNIQUE AUTO_INCREMENT,
 	usertype	ENUM ('admin', 'user', 'banned') NOT NULL DEFAULT 'user',
 
-	username	VARCHAR (30) NOT NULL UNIQUE,
+	username	VARCHAR (30) BINARY NOT NULL UNIQUE,
 	userpassword	VARCHAR (30) NOT NULL,
 
 	PRIMARY KEY (userid)
