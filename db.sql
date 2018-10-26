@@ -4,12 +4,11 @@ CREATE DATABASE lsd;
 USE lsd;
 
 CREATE TABLE users (
-	userid		INT NOT NULL UNIQUE,
+	userid		INT NOT NULL UNIQUE AUTO_INCREMENT,
 	usertype	ENUM ('admin', 'user', 'banned') NOT NULL DEFAULT 'user',
 
 	username	VARCHAR (30) NOT NULL UNIQUE,
 	userpassword	VARCHAR (30) NOT NULL,
-	userabout	VARCHAR (200),
 
 	PRIMARY KEY (userid)
 );
@@ -40,4 +39,3 @@ CREATE TABLE ratings (
 	FOREIGN KEY (ratingpostid) REFERENCES posts(postid),
 	PRIMARY KEY (ratingid)
 );
-
